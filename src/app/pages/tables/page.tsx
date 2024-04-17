@@ -11,9 +11,12 @@ async function getData(): Promise<Cities[]> {
 export default async function DemoPage() {
   const data = await getData()
  //console.log({data})
+ if(data){
   return (
     <div className="container mx-auto py-10 justify-center">
       <DataTable columns={columns} data={data} />
     </div>
   )
+}
+
 }
