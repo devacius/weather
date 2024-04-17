@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Citites = {
+export type Cities = {
   geoname_id: string
   name: string
   cou_name_en:string 
@@ -17,7 +17,7 @@ export type Citites = {
   }
 }
 
-export const columns: ColumnDef<Citites>[] = [
+export const columns: ColumnDef<Cities>[] = [
   {
     accessorKey: "geoname_id",
     header: "ID",
