@@ -3,7 +3,7 @@ import { DataTable } from "./data-table"
 
 async function getData(): Promise<Cities[]> {
   // Fetch data from your API here.
-  const res = await fetch(`https://${process.env.VERCEL_URL}/api/list_of_cities1`);
+  const res = await fetch(`https://127.0.0.1/api/list_of_cities1`);
     const data = await res.json()
     return data.data.results;
 }
