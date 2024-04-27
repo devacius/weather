@@ -11,7 +11,7 @@ async function getData(): Promise<Cities[]> {
 }
 
 export default  async function DemoPage() {
-  const data = getData()
+  const data = await getData()
  //console.log({data})
  if(data){
   return (
