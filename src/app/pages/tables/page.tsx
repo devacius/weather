@@ -1,24 +1,23 @@
+
 import { Cities, columns } from "./column"
 import { DataTable } from "./data-table"
 
 async function getData(): Promise<Cities[]> {
   // Fetch data from your API here.
-    const res = await fetch(`/api/tables`,{
-      method:"GET"
-    });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tables`);
   
     const data = await res.json()
     return data.data.results;
 }
 
-export default async function DemoPage() {
-  const data = await getData()
+export default  async function DemoPage() {
+  const data = getData()
  //console.log({data})
  if(data){
   return (
     <div className="container mx-auto py-10 justify-center">
       shit
-      <DataTable columns={columns} data={data} />
+      {/* <DataTable columns={columns} data={data} /> */}
     </div>
   )
 }
