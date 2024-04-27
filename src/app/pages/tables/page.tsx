@@ -3,7 +3,7 @@ import { DataTable } from "./data-table"
 
 async function getData(): Promise<Cities[]> {
   // Fetch data from your API here.
-    const res = await fetch('http://localhost:3000/api/tables');
+    const res = await fetch('http://127.0.0.1:3000/api/tables');
   
     const data = await res.json()
     return data.data.results;
