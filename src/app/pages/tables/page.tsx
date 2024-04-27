@@ -3,10 +3,10 @@ import { DataTable } from "./data-table"
 
 async function getData(): Promise<Cities[]> {
   // Fetch data from your API here.
-    const res = await fetch('https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?limit=100');
+    const res = await fetch('http://localhost:3000/api/tables');
   
     const data = await res.json()
-    return data.results;
+    return data.data.results;
 }
 
 export default async function DemoPage() {
