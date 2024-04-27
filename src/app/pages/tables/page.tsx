@@ -1,13 +1,14 @@
 import { Cities, columns } from "./column"
 import { DataTable } from "./data-table"
-import axios from 'axios'
 
 async function getData(): Promise<Cities[]> {
   // Fetch data from your API here.
-    const res = await axios.get(`/api/tables`);
+    const res = await fetch(`/api/tables`,{
+      method:"GET"
+    });
   
-  
-    return res.data.results;
+    const data = await res.json()
+    return data.data.results;
 }
 
 export default async function DemoPage() {
