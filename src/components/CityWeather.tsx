@@ -12,7 +12,6 @@ import {
 
 
 interface CityData {
-    name: string;
       main: {
           temp: number;
           feels_like: number;
@@ -38,6 +37,7 @@ interface CityData {
           deg: number;
           gust: number;
       };
+      name:string;
       
     // Add other properties as needed
   }
@@ -52,6 +52,8 @@ export default function CityTable() {
     const [wind,setWind] = useState<CityData['wind']|null>(null);
     const [lat, setLat] = useState<number>();
     const [lon, setLon] = useState<number>();
+    const [name, setName] = useState<string>();
+    const[visibility, setVisibility] = useState<number>();
     useEffect(() => {
     async function getData() {
             const storedLat = localStorage.getItem("lat");
@@ -75,7 +77,8 @@ export default function CityTable() {
         setCoord(data.data.coord);
         setWeather(data.data.weather[0]);
         setWind(data.data.wind);
-        
+        setName(data.data.name);
+        setVisibility(data.data.visibility);
        
     }
         
@@ -93,7 +96,7 @@ export default function CityTable() {
                     <div className="flex max-h-96 min-w-1/3  mr-10">
                        <Card>
                             <CardHeader>
-                                <CardTitle>{data[0].name}</CardTitle>
+                                <CardTitle>{name}</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="flex flex-row items-center">
@@ -138,7 +141,7 @@ export default function CityTable() {
                             <CardContent>
                                
                                 <div className="py-5">
-                                    <p className="text-5xl font-bold"> {data[0].visibility}</p>
+                                    <p className="text-5xl font-bold"> {visibility}</p>
                                    
                                 </div>
                                 
