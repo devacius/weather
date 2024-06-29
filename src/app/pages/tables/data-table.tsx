@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 import {
   ColumnDef,
   flexRender,
@@ -28,6 +29,8 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
+    const [lat, setLat] = useState<number>()
+    const[lon, setLon] = useState<number>()
   const table = useReactTable({
     data,
     columns,
@@ -38,7 +41,7 @@ export function DataTable<TData, TValue>({
       sorting,
     },
   })
-
+  const router = useRouter()
   return (
     <div className="rounded-md border ">
       <Table >
@@ -66,6 +69,15 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+               onClick={()=>{
+                localStorage.setItem('lat',row.original.coordinates.lat);
+                localStorage.setItem('lon',row.original.coordinates.lon);
+                console.log("lat",row.original.coordinates.lat,row.original.coordinates.lon);
+                router.push('/pages/weather')
+               
+                
+                }
+              }  
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
@@ -86,3 +98,4 @@ export function DataTable<TData, TValue>({
     </div>
   )
 }
+
