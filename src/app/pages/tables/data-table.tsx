@@ -70,8 +70,11 @@ export function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
                onClick={()=>{
+                //@ts-ignore;
                 localStorage.setItem('lat',row.original.coordinates.lat);
+                //@ts-ignore;
                 localStorage.setItem('lon',row.original.coordinates.lon);
+                //@ts-ignore;
                 console.log("lat",row.original.coordinates.lat,row.original.coordinates.lon);
                 router.push('/pages/weather')
                

@@ -8,14 +8,48 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+  } from "@/components/ui/card";
+
+
+interface CityData {
+    name: string;
+      main: {
+          temp: number;
+          feels_like: number;
+          temp_min: number;
+          temp_max: number;
+          pressure: number;
+          humidity: number;
+          sea_level: number;
+      };
+      coord: {
+          lon: number;
+          lat: number;
+      };
+      weather: {
+          id: number;
+          main: string;
+          description: string;
+          icon: string;
+      };
+      visibility: number;
+      wind: {
+          speed: number;
+          deg: number;
+          gust: number;
+      };
+      
+    // Add other properties as needed
+  }
   
 export default function CityTable() {
-    const[cityData, setCityData] = useState<[]>([]);
-    const [main,setMain ] = useState<[]>([]);
-    const [coord,setCoord] = useState<[]>([]);
-    const [weather,setWeather] = useState<[]>([]);
-    const [wind,setWind] = useState<[]>([]);
+    
+    
+    const [cityData, setCityData] = useState<CityData[] | null>(null);
+    const [main,setMain ] = useState<CityData['main']| null >(null);
+    const [coord,setCoord] = useState<CityData['coord']| null >(null);
+    const [weather,setWeather] = useState<CityData['weather']|null >(null);
+    const [wind,setWind] = useState<CityData['wind']|null>(null);
     const [lat, setLat] = useState<number>();
     const [lon, setLon] = useState<number>();
     useEffect(() => {
@@ -59,7 +93,7 @@ export default function CityTable() {
                     <div className="flex max-h-96 min-w-1/3  mr-10">
                        <Card>
                             <CardHeader>
-                                 <CardTitle>{data.name}</CardTitle>
+                                <CardTitle>{data[0].name}</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="flex flex-row items-center">
@@ -104,7 +138,7 @@ export default function CityTable() {
                             <CardContent>
                                
                                 <div className="py-5">
-                                    <p className="text-5xl font-bold"> {data.visibility}</p>
+                                    <p className="text-5xl font-bold"> {data[0].visibility}</p>
                                    
                                 </div>
                                 
